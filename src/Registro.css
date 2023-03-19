@@ -1,0 +1,40 @@
+.logo {
+    width: 160px;
+}
+
+.contenedor {
+    padding: 0px 20px;
+}
+
+.contenedor .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 101px;
+}
+
+.contenedor .form .setup form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+header {
+    height: 13vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.check {
+    display: flex;
+    width: 100%;
+    gap: 17px;
+}
+
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}

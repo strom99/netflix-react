@@ -1,0 +1,29 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.btn{
+  background-color: red;
+  color: white;
+  padding: 10px 40px;
+  border: none;
+}
+
+.btn:hover{
+  background-color: rgb(255, 49, 49);
+}
+
+input{
+border: 1px solid gray;
+}
+
+
+.error{
+
+  border-bottom: 2px solid red;
+}
+
+.correcto{
+  border-bottom: 2px solid rgb(2, 180, 49) !important;
+}
