@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import "./Plan.css";
 
+// Almacenamos cada plan en un objeto,esta forma se hizo por la estrutura vertical de tabla
 const planes = [
   {
     name: "Básico con anuncios",
@@ -43,6 +44,7 @@ const planes = [
   },
 ];
 
+// Aqui se recoge la infromacion de "planes" estrucurada para mostrar la tabla
 const headers = planes[0].specs.map((spec) => {
   return {
     name: spec.name,
@@ -56,6 +58,7 @@ const headers = planes[0].specs.map((spec) => {
 });
 
 export function Plan({ changeView }) {
+  // siempre habra un plan selecionado por defeecto
   const [selectedPlan, setSelectedPlan] = useState(planes[0]);
 
   return (

@@ -23,7 +23,7 @@ export function Datos({ datos }) {
             <li>
               <h3>Plan</h3>
               <ul className="tarjeta">
-                // recorremos los datos de la tarjeta
+                {/*  recorremos los datos de la tarjeta */}
                 {datos.plan.selectedPlan.specs.map((spec, index) => (
                   <li key={index}>
                     <h3>{spec.name}</h3>
