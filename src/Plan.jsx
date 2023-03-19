@@ -5,7 +5,7 @@ const planes = [
   {
     name: "Básico con anuncios",
     specs: [
-      { name: "Precio al mes", values: "5,49€" },
+      { name: "Precio al mes", value: "5,49€" },
       { name: "Calidad de vídeo", value: "Buena" },
       { name: "Resolución", value: "720p" },
       {
@@ -43,117 +43,135 @@ const planes = [
   },
 ];
 
-export function Plan({ changeView }) {
-  const [selectedPlan, setSelectedPlan] = useState(undefined);
-
-  const selecPlan = (e) => {
-    console.log(e);
+const headers = planes[0].specs.map((spec) => {
+  return {
+    name: spec.name,
+    values: planes.map((plan) => {
+      return {
+        plan: plan.name,
+        value: plan.specs.find((s) => s.name === spec.name).value,
+      };
+    }),
   };
+});
+
+export function Plan({ changeView }) {
+  const [selectedPlan, setSelectedPlan] = useState(planes[0]);
 
   return (
     <div className="content">
-      <div className="ctn">
-        <div className="recomendaciones">
-          <h2>Selecciona el plan ideal para ti</h2>
-          <ul>
-            <li>
-              <img src="/src/assets/check.png" alt="" />
-              <span>Ve todo lo que quieras</span>
-            </li>
-            <li>
-              <img src="/src/assets/check.png" alt="" />
-              <span>Recomendaciones solo para ti.</span>
-            </li>
-            <li>
-              <img src="/src/assets/check.png" alt="" />
-              <span>Cambia o cancela tu plan en cualquier momento.</span>
-            </li>
-          </ul>
-        </div>
-        <div className="selPlan">
-          <table>
-            <tbody>
-              <tr>
-                <th>Precio al mes</th>
-                <td>7,99€</td>
-                <td>7,99€</td>
-                <td>7,99€</td>
+      <header>
+        <img className="logo" src="/src/assets/logo.png" alt="" />
+        <a href="#">Sign up</a>
+      </header>
+      <div className="recomendaciones">
+        <h2>Selecciona el plan ideal para ti</h2>
+        <ul>
+          <li>
+            <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="red">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
+            <span>Ve todo lo que quieras</span>
+          </li>
+          <li>
+            <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="red">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
+            <span>Recomendaciones solo para ti.</span>
+          </li>
+          <li>
+            <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="red">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
+            <span>Cambia o cancela tu plan en cualquier momento.</span>
+          </li>
+        </ul>
+      </div>
+      <div className="selPlan">
+        <table width="100%">
+          <tbody>
+            <tr className="planes-names">
+              <th></th>
+              {planes.map((plan) => (
+                <td
+                  key={plan.name}
+                  className={plan.name === selectedPlan.name ? "selected" : ""}
+                >
+                  <button
+                    onClick={() => setSelectedPlan(plan)}
+                    className="caja"
+                  >
+                    {plan.name}
+                  </button>
+                </td>
+              ))}
+            </tr>
+            {headers.map(({ name, values }) => (
+              <tr key={name} className="specs-names">
+                <th>{name}</th>
+                {values.map(({ plan, value }) => (
+                  <td
+                    key={plan}
+                    className={plan === selectedPlan.name ? "selected" : ""}
+                  >
+                    {typeof value === "boolean" ? (
+                      value ? (
+                        <svg
+                          className="check"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke={
+                            plan === selectedPlan.name ? "red" : "#5a5959"
+                          }
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M4.5 12.75l6 6 9-13.5"
+                          />
+                        </svg>
+                      ) : (
+                        <svg
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M19.5 12h-15"
+                          />
+                        </svg>
+                      )
+                    ) : (
+                      value
+                    )}
+                  </td>
+                ))}
               </tr>
-            </tbody>
-          </table>
-          {/* <ul className="planes">
-            <li className="plan">
-              <span className="primero">Precio mensual</span>
-              <ul className="items">
-                <li>
-                  <button onClick={selecPlan} className="caja">
-                    <span>Basico con anuncios</span>
-                  </button>
-                  <span>5,49 euros</span>
-                </li>
-                <li>
-                  <button className="caja">
-                    <span>Estandar</span>
-                  </button>
-                  <span>12,99 euros</span>
-                </li>
-                <li>
-                  <button className="caja">
-                    <span>De primera calidad</span>
-                  </button>
-                  <span>17,99 euros</span>
-                </li>
-              </ul>
-            </li>
-            <li className="plan">
-              <span className="primero">Calidad de video</span>
-              <ul className="items">
-                <li>Buena</li>
-                <li>Muy buena</li>
-                <li>Excepcional</li>
-              </ul>
-            </li>
-            <li className="plan">
-              <span className="primero">Resolucion</span>
-              <ul className="items">
-                <li>720p</li>
-                <li>1080p</li>
-                <li>4k+HDR</li>
-              </ul>
-            </li>
-            <li className="plan">
-              <span className="primero">
-                Míralo en tu TV, computadora, teléfono móvil y tableta
-              </span>
-              <ul className="items">
-                <li>
-                  <img src="/src/assets/check.png" alt="" />
-                </li>
-                <li>
-                  <img src="/src/assets/check2.png" alt="" />
-                </li>
-                <li>
-                  <img src="/src/assets/check2.png" alt="" />
-                </li>
-              </ul>
-            </li>
-            <li className="plan">
-              <span className="primero">Descargas</span>
-              <ul className="items">
-                <li>
-                  <span className="no">-</span>
-                </li>
-                <li>
-                  <img src="/src/assets/check2.png" alt="" />
-                </li>
-                <li>
-                  <img src="/src/assets/check2.png" alt="" />
-                </li>
-              </ul>
-            </li>
-          </ul> */}
-          <button className="btn">Siguiente</button>
-        </div>
+            ))}
+          </tbody>
+        </table>
+        <button
+          className="btn"
+          onClick={() => changeView("pagament", { selectedPlan })}
+        >
+          Siguiente
+        </button>
       </div>
     </div>
   );

@@ -1,29 +1,37 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-.btn{
+.btn {
   background-color: red;
   color: white;
   padding: 10px 40px;
   border: none;
 }
 
-.btn:hover{
+.btn:hover {
   background-color: rgb(255, 49, 49);
 }
 
-input{
-border: 1px solid gray;
+input {
+  border: 1px solid gray;
 }
 
-
-.error{
-
-  border-bottom: 2px solid red;
+.error {
+  border-bottom: 3px solid red !important;
 }
 
-.correcto{
-  border-bottom: 2px solid rgb(2, 180, 49) !important;
+.correcto {
+  border-bottom: 3px solid rgb(2, 180, 49) !important;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.input {
+  width: 100%;
 }

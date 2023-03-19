@@ -28,13 +28,13 @@ export function Inicio({ changeView }) {
       evt.preventDefault();
       evt.target.reportValidity();
     } else {
-      changeView("registro");
+      changeView("registro", { email });
     }
   };
   return (
     <div className="App">
       <div className="suscripcion">
-        <h3>Disfruta cuando quieras. Cancela cuando quierassss.</h3>
+        <h3>Disfruta cuando quieras. Cancela cuando quieras.</h3>
         <span>
           Quieres ver algo ya? Escribe tu direccion de correo electronico para
           crear una suscripcion a Netflix o reactivarla

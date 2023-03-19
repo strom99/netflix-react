@@ -1,0 +1,30 @@
+.contentPag {
+  width: 500px;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+form input {
+  padding: 10px;
+}
+
+.planP {
+  display: flex;
+  justify-content: space-between;
+  background-color: gainsboro;
+  padding: 15px;
+  align-items: center;
+}
+
+.planP div span {
+  display: block;
+}
+
+.input input {
+  width: -webkit-fill-available;
+}
